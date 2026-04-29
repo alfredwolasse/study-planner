@@ -1,4 +1,4 @@
-const API_BASE = ''; // Empty string allows relative path routing via Flask
+const API_BASE = window.location.port === '8000' ? `http://${window.location.hostname}:5000` : '';
 let subjectCount = 1;
 let pieChartInstance = null;
 let lineChartInstance = null;
