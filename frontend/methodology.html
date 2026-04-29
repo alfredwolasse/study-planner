@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Méthodologie | Planificateur d'Études</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-link">← Retour à l'accueil</a>
+    </nav>
+    <div class="container">
+        <header>
+            <h1>Méthodologie Académique</h1>
+            <p class="subtitle">La science derrière la planification</p>
+        </header>
+
+        <main>
+            <section class="card" id="methodology-section">
+                <div id="methodology-content" class="loading">Chargement de la méthodologie...</div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js?v=6"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', fetchMethodology);
+    </script>
+</body>
+</html>

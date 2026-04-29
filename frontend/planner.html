@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planificateur | Planificateur d'Études</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar no-print">
+        <a href="index.html" class="nav-link">← Retour à l'accueil</a>
+    </nav>
+    <div class="container">
+        <header class="no-print">
+            <h1>Tableau de Bord du Planificateur</h1>
+            <p class="subtitle">Configurez vos paramètres pour générer un emploi du temps</p>
+        </header>
+
+        <main>
+            <section class="card no-print" id="input-section">
+                <form id="planner-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="hours_per_day">Heures Disponibles / Jour</label>
+                            <input type="number" id="hours_per_day" value="4" min="1" max="24" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="days_left">Jours avant l'Échéance</label>
+                            <input type="number" id="days_left" value="7" min="1" required>
+                        </div>
+                    </div>
+
+                    <div id="subjects-container">
+                        <h3>Configuration des Matières</h3>
+                        <div class="subject-row" id="row-0">
+                            <input type="text" placeholder="Nom de la Matière (ex: Maths)" class="subject-name" required>
+                            <input type="text" placeholder="Chapitre/Thème (Optionnel)" class="subject-topic">
+                            <select class="subject-level">
+                                <option value="faible">Faible (Priorité Haute)</option>
+                                <option value="moyen" selected>Moyen (Normal)</option>
+                                <option value="fort">Fort (Révision Uniquement)</option>
+                            </select>
+                            <button type="button" class="btn-remove" onclick="removeSubject(0)">Supprimer</button>
+                        </div>
+                    </div>
+                    
+                    <div class="actions">
+                        <button type="button" class="btn-outline" onclick="addSubjectRow()">+ Ajouter une Matière</button>
+                        <button type="submit" class="btn-solid" id="generate-btn">Générer le Plan</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="results-section hidden" id="results-section">
+                <div class="section-header no-print">
+                    <h2>Analytique & Tableau de Bord</h2>
+                </div>
+                
+                <div class="charts-container no-print">
+                    <div class="chart-card">
+                        <h3>Répartition Totale du Temps</h3>
+                        <canvas id="pieChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Charge de Travail Quotidienne</h3>
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="section-header print-header" style="margin-top: 3rem;">
+                    <h2>Emploi du Temps Généré</h2>
+                    <button class="btn-text no-print" onclick="window.print()">🖨️ Imprimer en PDF</button>
+                </div>
+                <div id="schedule-output" class="schedule-grid"></div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js?v=6"></script>
+</body>
+</html>
