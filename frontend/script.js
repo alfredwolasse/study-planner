@@ -1,4 +1,4 @@
-const API_BASE = window.location.port === '8000' ? `http://${window.location.hostname}:5000` : '';
+let API_BASE = window.location.port === '8000' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? `http://${window.location.hostname}:5000` : '';
 let subjectCount = 1;
 let pieChartInstance = null;
 let lineChartInstance = null;
