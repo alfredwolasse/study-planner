@@ -189,6 +189,7 @@ input, select {
     color: var(--text);
     font-size: 1rem;
     font-family: inherit;
+    min-width: 0;
 }
 
 input:focus, select:focus {
@@ -199,7 +200,7 @@ input:focus, select:focus {
 
 .subject-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr auto;
+    grid-template-columns: 2fr 2fr 3fr auto;
     gap: 1rem;
     margin-bottom: 1rem;
     align-items: center;

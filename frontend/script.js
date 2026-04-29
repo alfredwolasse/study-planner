@@ -143,7 +143,7 @@ function renderSchedule(schedule) {
         dayCard.innerHTML = `
             <h4>Jour ${day.day}</h4>
             <div class="tasks">
-                ${tasksHtml || '<p style="color: var(--text-dim); font-style: italic;">Aucune tâche pour aujourd\\'hui.</p>'}
+                ${tasksHtml || '<p style="color: var(--text-dim); font-style: italic;">Aucune tâche de prévue.</p>'}
             </div>
         `;
         container.appendChild(dayCard);
