@@ -1,5 +1,5 @@
-// CHANGEZ "TON-PSEUDO" par votre nom d'utilisateur PythonAnywhere
-let API_BASE = window.location.port === '8000' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? `http://${window.location.hostname}:5000` : 'https://TON-PSEUDO.pythonanywhere.com';
+// Configuration Vercel par défaut (utiliser la même origine)
+let API_BASE = window.location.port === '8000' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? `http://${window.location.hostname}:5000` : '';
 let subjectCount = 1;
 let pieChartInstance = null;
 let lineChartInstance = null;
@@ -7,7 +7,7 @@ let lineChartInstance = null;
 function addSubjectRow() {
     const container = document.getElementById('subjects-container');
     const rowId = subjectCount++;
-    
+
     const row = document.createElement('div');
     row.className = 'subject-row';
     row.id = `row-${rowId}`;
@@ -48,7 +48,7 @@ async function fetchMethodology() {
 function renderMethodology(data) {
     const container = document.getElementById('methodology-content');
     if (!container) return;
-    
+
     container.innerHTML = `
         <div class="methodology-content">
             <h3>Énoncé du Problème</h3>
@@ -74,7 +74,7 @@ function renderMethodology(data) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('planner-form');
-    if(form) {
+    if (form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             generatePlan();
@@ -86,7 +86,7 @@ async function generatePlan() {
     const hoursPerDay = document.getElementById('hours_per_day').value;
     const daysLeft = document.getElementById('days_left').value;
     const subjectRows = document.querySelectorAll('.subject-row');
-    
+
     const subjects = Array.from(subjectRows).map(row => ({
         name: row.querySelector('.subject-name').value,
         topic: row.querySelector('.subject-topic').value,
@@ -126,11 +126,11 @@ async function generatePlan() {
 function renderSchedule(schedule) {
     const container = document.getElementById('schedule-output');
     container.innerHTML = '';
-    
+
     schedule.forEach(day => {
         const dayCard = document.createElement('div');
         dayCard.className = 'day-card';
-        
+
         let tasksHtml = day.tasks.map(t => `
             <div class="task-item">
                 <div class="task-info">
@@ -140,7 +140,7 @@ function renderSchedule(schedule) {
                 <span class="hours">${t.hours} h</span>
             </div>
         `).join('');
-        
+
         dayCard.innerHTML = `
             <h4>Jour ${day.day}</h4>
             <div class="tasks">
@@ -153,13 +153,13 @@ function renderSchedule(schedule) {
 
 function renderCharts(schedule, subjectNames) {
     const colors = [
-        '#3b82f6', '#10b981', '#f59e0b', '#ef4444', 
+        '#3b82f6', '#10b981', '#f59e0b', '#ef4444',
         '#8b5cf6', '#06b6d4', '#ec4899', '#f97316'
     ];
 
     const totals = {};
     subjectNames.forEach(s => totals[s] = 0);
-    
+
     schedule.forEach(day => {
         day.tasks.forEach(task => {
             if (totals[task.subject] !== undefined) {
@@ -173,7 +173,7 @@ function renderCharts(schedule, subjectNames) {
 
     const pieCtx = document.getElementById('pieChart').getContext('2d');
     if (pieChartInstance) pieChartInstance.destroy();
-    
+
     Chart.defaults.color = '#94a3b8';
     Chart.defaults.borderColor = '#334155';
 
