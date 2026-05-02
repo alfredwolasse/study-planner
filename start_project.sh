@@ -7,14 +7,14 @@ echo "🚀 Starting Smart Study Planner..."
 
 # 1. Start Backend in the background
 echo "📅 Starting Flask Backend (Port 5000)..."
-cd backend
+cd api
 if [ ! -d "venv" ]; then
     echo "📦 Creating virtual environment..."
     python3 -m venv venv
 fi
 source venv/bin/activate
 pip install -r requirements.txt > /dev/null 2>&1
-python app.py > backend.log 2>&1 &
+python index.py > backend.log 2>&1 &
 BACKEND_PID=$!
 cd ..
 
