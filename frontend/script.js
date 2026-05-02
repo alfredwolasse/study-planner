@@ -1,4 +1,5 @@
-let API_BASE = window.location.port === '8000' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? `http://${window.location.hostname}:5000` : '';
+// CHANGEZ "TON-PSEUDO" par votre nom d'utilisateur PythonAnywhere
+let API_BASE = window.location.port === '8000' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? `http://${window.location.hostname}:5000` : 'https://TON-PSEUDO.pythonanywhere.com';
 let subjectCount = 1;
 let pieChartInstance = null;
 let lineChartInstance = null;
