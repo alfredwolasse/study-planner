@@ -4,18 +4,11 @@ from flask_cors import CORS
 from planner import StudyPlanner
 from methodology import Methodology
 
-app = Flask(__name__, static_folder='../frontend')
+app = Flask(__name__)
 CORS(app)  # Enable CORS for frontend communication
 
-@app.route('/')
-def serve_index():
-    return send_from_directory(app.static_folder, 'index.html')
+# Note: Static files are handled by Vercel directly via vercel.json
 
-@app.route('/<path:path>')
-def serve_static(path):
-    if os.path.exists(os.path.join(app.static_folder, path)):
-        return send_from_directory(app.static_folder, path)
-    return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/generate-plan', methods=['POST'])
 def generate_plan():
